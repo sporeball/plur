@@ -9,6 +9,15 @@ import {
 } from '@mui/material'
 import AddIcon from '@mui/icons-material/Add'
 
+import * as event from '../event.tsx'
+
+function onNewHeadmate (...args) {
+  const [data] = args;
+  console.log(data);
+}
+
+event.on('new-headmate', onNewHeadmate);
+
 export default function NewHeadmateDialog () {
   const [isDialogOpen, setIsDialogOpen] = React.useState(false);
   const [headmateName, setHeadmateName] = React.useState('');
@@ -23,8 +32,12 @@ export default function NewHeadmateDialog () {
   };
 
   const handleAddNewHeadmate = () => {
+    const data = {
+      name: headmateName,
+      pronouns: headmatePronouns
+    };
+    event.emit('new-headmate', data);
     setIsDialogOpen(false);
-    // ...
   };
 
   return (
