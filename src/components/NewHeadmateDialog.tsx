@@ -10,10 +10,13 @@ import {
 import AddIcon from '@mui/icons-material/Add'
 
 import * as event from '../event.tsx'
+import * as store from '../store.tsx'
 
 function onNewHeadmate (...args) {
   const [data] = args;
-  console.log(data);
+  const headmates = store.get('headmates');
+  headmates.push(data);
+  store.set('headmates', headmates);
 }
 
 event.on('new-headmate', onNewHeadmate);

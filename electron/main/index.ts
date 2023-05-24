@@ -3,6 +3,8 @@ import { release } from 'node:os'
 import { join } from 'node:path'
 import { update } from './update'
 
+import * as store from '../../src/store.tsx'
+
 // The built directory structure
 //
 // ├─┬ dist-electron
@@ -64,8 +66,9 @@ async function createWindow() {
   }
 
   // Test actively push message to the Electron-Renderer
-  win.webContents.on('did-finish-load', () => {
-    win?.webContents.send('main-process-message', new Date().toLocaleString())
+  win.webContents.on('did-finish-load', async () => {
+    await win?.webContents.send('set-global', 'userData', app.getPath('userData'));
+    await win?.webContents.send('init-store');
   })
 
   // Make all links open with the browser, not with the application

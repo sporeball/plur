@@ -1,6 +1,3 @@
-// import * as event from './event.tsx'
-// event.emit('new-headmate')
-
 const _events = {};
 
 export function on (event, fn) {
