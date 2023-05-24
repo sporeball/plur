@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import Header from './components/Header.tsx'
+import NewEntryDialog from './components/NewEntryDialog.tsx'
 import NewHeadmateDialog from './components/NewHeadmateDialog.tsx'
 import Update from '@/components/update'
 
@@ -18,6 +19,7 @@ function App() {
       <div className='App'>
         <Header />
         <NewHeadmateDialog />
+        <NewEntryDialog />
       </div>
     </>
   )
